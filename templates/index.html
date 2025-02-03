@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Library Management System</h1>
+
+        <div class="form-container">
+            <h3>Add New Book</h3>
+            <form id="addBookForm">
+                <input type="text" id="title" placeholder="Book Title" required>
+                <input type="text" id="author" placeholder="Author" required>
+                <select id="status">
+                    <option value="Available">Available</option>
+                    <option value="Checked Out">Checked Out</option>
+                </select>
+                <button type="submit">Add Book</button>
+            </form>
+        </div>
+
+        <h3>Library Books</h3>
+        <table id="booksTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr data-id="{{ book.id }}">
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.status }}</td>
+                    <td>
+                        <button class="update-btn">Update Status</button>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='sscript.js') }}"></script>
+</body>
+</html>
